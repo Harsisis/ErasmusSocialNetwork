@@ -1,3 +1,3 @@
 #MNS - Erasmus social network
 
-swagger accessible une fois le projet lancé : http://localhost:8080/swagger-ui/index.html
+swagger accessible une fois le projet lancé : http://localhost:8080/api/swagger-ui/index.html
