@@ -12,17 +12,17 @@ import fr.erasmus.socialNetwork.struct.LikedPostStruct;
 
 @Service
 public class LikedPostService implements IService<LikedPostStruct> {
-	
+
 	@Autowired
 	private LikedPostRepository likedPostRepository;
-	
+
 	@Autowired
 	private LikedPostMapper likedPostMapper;
 
 	@Override
-	public boolean like(LikedPostStruct structToSave) {
-		likedPostRepository.save(likedPostMapper.likedPostStructToLikedPost(structToSave));
-		return true;
+	public LikedPostStruct like(LikedPostStruct structToSave) {
+		return likedPostMapper.likedPostToLikedPostStruct(
+				likedPostRepository.save(likedPostMapper.likedPostStructToLikedPost(structToSave)));
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class LikedPostService implements IService<LikedPostStruct> {
 		return likedPostRepository.findAllWithUserId(userId).stream().map(likedPostMapper::likedPostToLikedPostStruct)
 				.collect(Collectors.toList());
 	}
-	
+
 	@Override
 	public List<LikedPostStruct> findAll() {
 		return likedPostRepository.findAll().stream().map(likedPostMapper::likedPostToLikedPostStruct)

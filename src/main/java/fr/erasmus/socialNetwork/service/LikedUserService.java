@@ -20,9 +20,9 @@ public class LikedUserService implements IService<LikedUserStruct> {
 	private LikedUserMapper likedUserMapper;
 
 	@Override
-	public boolean like(LikedUserStruct structToSave) {
-		likedUserRepository.save(likedUserMapper.likedUserStructToLikedUser(structToSave));
-		return true;
+	public LikedUserStruct like(LikedUserStruct structToSave) {
+		return likedUserMapper.likedUserToLikedUserStruct(
+				likedUserRepository.save(likedUserMapper.likedUserStructToLikedUser(structToSave)));
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class LikedUserService implements IService<LikedUserStruct> {
 		return likedUserRepository.findAllWithUserId(userId).stream().map(likedUserMapper::likedUserToLikedUserStruct)
 				.collect(Collectors.toList());
 	}
-	
+
 	@Override
 	public List<LikedUserStruct> findAll() {
 		return likedUserRepository.findAll().stream().map(likedUserMapper::likedUserToLikedUserStruct)

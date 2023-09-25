@@ -13,7 +13,7 @@ public interface IService<V> {
 	 * @param userId
 	 * @return
 	 */
-	boolean like(V structToSave);
+	V like(V structToSave);
 	
 	/**
 	 * UnLike Object

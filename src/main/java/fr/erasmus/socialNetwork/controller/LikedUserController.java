@@ -23,7 +23,7 @@ public class LikedUserController {
 	private LikedUserService likedUserService;
 
 	@PostMapping(value = "/like")
-	public ResponseEntity<Boolean> likeComment(@RequestBody LikedUserStruct LikedUserStruct) {
+	public ResponseEntity<LikedUserStruct> likeComment(@RequestBody LikedUserStruct LikedUserStruct) {
 		return ResponseEntity.status(HttpStatus.OK).body(likedUserService.like(LikedUserStruct));
 	}
 

@@ -12,22 +12,22 @@ import fr.erasmus.socialNetwork.struct.LikedCommentStruct;
 
 @Service
 public class LikedCommentService implements IService<LikedCommentStruct> {
-	
+
 	@Autowired
 	private LikedCommentRepository likedCommentRepository;
-	
+
 	@Autowired
 	private LikedCommentMapper likedCommentMapper;
 
 	@Override
-	public boolean like(LikedCommentStruct structToSave) {
-		likedCommentRepository.save(likedCommentMapper.likedCommentStructToLikedComment(structToSave));
-		return true;
+	public LikedCommentStruct like(LikedCommentStruct structToSave) {
+		return likedCommentMapper.likedCommentToLikedCommentStruct(
+				likedCommentRepository.save(likedCommentMapper.likedCommentStructToLikedComment(structToSave)));
 	}
 
 	@Override
 	public boolean unlike(LikedCommentStruct structToSave) {
-		if(likedCommentRepository.existsById(structToSave.getId())) {
+		if (likedCommentRepository.existsById(structToSave.getId())) {
 			likedCommentRepository.delete(likedCommentRepository.findById(structToSave.getId()).get());
 			return true;
 		}
@@ -36,8 +36,8 @@ public class LikedCommentService implements IService<LikedCommentStruct> {
 
 	@Override
 	public List<LikedCommentStruct> likedByUser(int userId) {
-		return likedCommentRepository.findAllWithUserId(userId).stream().map(likedCommentMapper::likedCommentToLikedCommentStruct)
-				.collect(Collectors.toList());
+		return likedCommentRepository.findAllWithUserId(userId).stream()
+				.map(likedCommentMapper::likedCommentToLikedCommentStruct).collect(Collectors.toList());
 	}
 
 	@Override
