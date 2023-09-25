@@ -1,6 +1,7 @@
 package fr.erasmus.socialNetwork.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ public class CommentService implements IService<Comment, CommentDto, CommentFilt
 
 	@Autowired
 	private CommentRepository commentRepository;
+	
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private CommentMapper commentMapper;
@@ -56,10 +60,16 @@ public class CommentService implements IService<Comment, CommentDto, CommentFilt
 		
 	}
 
-	public void like(int id, int userId) {
-		CommentDto commentDto = find(id);
-		commentDto.getCommentLikes().add(userId);
-		update(commentDto);
+	public boolean like(int id, int userId) {
+		Optional<Comment> comment = commentRepository.findById(id);
+		if(comment.isPresent()) {
+			CommentDto commentDto = find(id);
+			commentDto.getCommentLikes().add(userService.find(userId));
+			update(commentDto);
+			return true;
+		}
+		return false;
+		
 	}
 	
 }

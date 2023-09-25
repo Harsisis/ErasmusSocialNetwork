@@ -45,7 +45,6 @@ public class CommentController {
 
     @GetMapping(name="/like")
     public ResponseEntity<Boolean> likeComment(@RequestHeader("id") int id, @RequestHeader("userId") int userId){
-        commentService.like(id, userId);
-        return ResponseEntity.status(HttpStatus.OK).body(true);
+        return ResponseEntity.status(HttpStatus.OK).body(commentService.like(id, userId));
     }
 }
