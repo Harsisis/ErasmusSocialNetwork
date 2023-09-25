@@ -2,11 +2,11 @@ package fr.erasmus.socialNetwork.mapper;
 
 import org.mapstruct.Mapper;
 
-import fr.erasmus.socialNetwork.entity.User;
-import fr.erasmus.socialNetwork.struct.UserDto;
+import fr.erasmus.socialNetwork.entity.LikedUser;
+import fr.erasmus.socialNetwork.struct.LikedUserStruct;
 
 @Mapper
 public interface UserMapper {
-	UserDto userToUserDto(User user);
-	User userDtoToUser(UserDto userDto);
+	LikedUserStruct likedUserToLikedUserStruct(LikedUser user);
+	LikedUser likedUserStructToLikedUser(LikedUserStruct userStruct);
 }

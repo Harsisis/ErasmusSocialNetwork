@@ -4,50 +4,29 @@ import java.util.List;
 
 /**
  * Interface for default CRUD service methods
- * @param <E> --> Entity
- * @param <S> --> Structure
- * @param <F> --> Filter
  */
-public interface IService<E, S, F> {
-	
+public interface IService {
 	/**
-	 * Find Structure by id
+	 * Like Object
 	 * @param id
+	 * @param userId
 	 * @return
 	 */
-	S find(int id);
+	boolean like(int id, int userId);
 	
 	/**
-	 * Find all Structure
+	 * UnLike Object
+	 * @param id
+	 * @param userId
 	 * @return
 	 */
-	List<S> findAll();
+	boolean unlike(int id, int userId);
 	
 	/**
-	 * Find all Structure using Filter
+	 * List of Objects liked by User
+	 * @param userId
 	 * @return
 	 */
-	List<S> findAllFiltered(F filter);
-	
-	/**
-	 * Create Entity and return newly created Structure
-	 * @param struct
-	 * @return
-	 */
-	S create(S struct);
-	
-	/**
-	 * Update Entity and return newly updated Structure
-	 * @param struct
-	 * @return
-	 */
-	S update(S struct);
-	
-	/**
-	 * Delete Entity by id
-	 * @param struct
-	 * @return
-	 */
-	boolean delete(int id);
+	List<Integer> likedByUser(int userId);
 
 }

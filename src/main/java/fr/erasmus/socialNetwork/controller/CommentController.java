@@ -1,5 +1,7 @@
 package fr.erasmus.socialNetwork.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,38 +15,25 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.erasmus.socialNetwork.service.CommentService;
+import fr.erasmus.socialNetwork.service.LikedCommentService;
 import fr.erasmus.socialNetwork.struct.CommentDto;
 
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
 
-    @Autowired private CommentService commentService;
-
-    @GetMapping(name="/{id}")
-    public ResponseEntity<CommentDto> getComment(@PathVariable("id") int id){
-        return ResponseEntity.status(HttpStatus.OK).body(commentService.find(id));
-    }
-
-    @PostMapping()
-    public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto commentDto){
-        return ResponseEntity.status(HttpStatus.OK).body(commentService.create(commentDto));
-    }
-
-    @PutMapping()
-    public ResponseEntity<CommentDto> updateComment(@RequestBody CommentDto commentDto){
-        return ResponseEntity.status(HttpStatus.OK).body(commentService.update(commentDto));
-    }
-
-    @DeleteMapping(name="/{id}")
-    public ResponseEntity<Boolean> deleteComment(@PathVariable("id") int id){
-        commentService.delete(id);
-        return ResponseEntity.status(HttpStatus.OK).body(true);
-    }
+    @Autowired 
+    private LikedCommentService commentService;
 
     @GetMapping(name="/like")
-    public ResponseEntity<Boolean> likeComment(@RequestHeader("id") int id, @RequestHeader("userId") int userId){
-        return ResponseEntity.status(HttpStatus.OK).body(commentService.like(id, userId));
+    public ResponseEntity<Boolean> likeComment(@RequestHeader("commentId") int commentId, @RequestHeader("userId") int userId){
+        return ResponseEntity.status(HttpStatus.OK).body(commentService.like(commentId, userId));
     }
+    
+    @GetMapping(name="/allLiked")
+    public ResponseEntity<List<Integer>> findAllLikedComment(@RequestHeader("commentId") int commentId, @RequestHeader("userId") int userId){
+        return ResponseEntity.status(HttpStatus.OK).body(commentService.like(commentId, userId));
+    }
+    
+    
 }
