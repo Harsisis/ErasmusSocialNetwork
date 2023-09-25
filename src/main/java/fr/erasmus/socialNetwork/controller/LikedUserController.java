@@ -17,7 +17,7 @@ import fr.erasmus.socialNetwork.struct.LikedUserStruct;
 
 @RestController
 @RequestMapping(name = "/user")
-public class UserController {
+public class LikedUserController {
 
 	@Autowired
 	private LikedUserService likedUserService;

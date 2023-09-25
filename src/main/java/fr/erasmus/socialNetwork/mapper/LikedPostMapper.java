@@ -7,7 +7,7 @@ import fr.erasmus.socialNetwork.struct.LikedPostStruct;
 
 
 @Mapper
-public interface PostMapper{
+public interface LikedPostMapper{
 	LikedPostStruct likedPostToLikedPostStruct(LikedPost post);
 	LikedPost likedPostStructToLikedPost(LikedPostStruct postStruct);
 }
