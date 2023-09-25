@@ -25,7 +25,7 @@ public class Post {
 	private int id;
 	
 	@ManyToOne  
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="user_id", nullable=false)
 	private User user;
 	
 	@Column(name="creation_date")
@@ -39,7 +39,7 @@ public class Post {
 	
 	@ManyToMany
 	@JoinTable(name = "user_liked_post", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
-	private Set<User> post_likes;
+	private Set<User> likedPosts;
 
 	public int getId() {
 		return id;
@@ -81,23 +81,23 @@ public class Post {
 		this.comments = comments;
 	}
 
-	public Set<User> getPost_likes() {
-		return post_likes;
+	public Set<User> getLikedPosts() {
+		return likedPosts;
 	}
 
-	public void setPost_likes(Set<User> post_likes) {
-		this.post_likes = post_likes;
+	public void setLikedPosts(Set<User> likedPosts) {
+		this.likedPosts = likedPosts;
 	}
 
 	public Post(int id, User user, LocalDate creationDate, String content, Set<Comment> comments,
-			Set<User> post_likes) {
+			Set<User> likedPosts) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.creationDate = creationDate;
 		this.content = content;
 		this.comments = comments;
-		this.post_likes = post_likes;
+		this.likedPosts = likedPosts;
 	}
 	
 	

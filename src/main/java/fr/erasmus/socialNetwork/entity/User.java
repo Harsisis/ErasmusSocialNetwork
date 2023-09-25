@@ -16,9 +16,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name="user")
@@ -46,20 +43,23 @@ public class User {
 	private Date birthdate;
 	
 	@OneToMany(mappedBy="user")
+    private Set<Post> posts;
+	
+	@OneToMany(mappedBy="user")
     private Set<Comment> comments;
 	
-	@ManyToMany(mappedBy="comment_likes")
+	@ManyToMany(mappedBy="likedComments")
 	private Set<Comment> likedComments;
 	
-	@ManyToMany(mappedBy="post_likes")
+	@ManyToMany(mappedBy="likedPosts")
 	private Set<Post> likedPosts;
 	
-	@ManyToMany(mappedBy="user_likes")
+	@ManyToMany(mappedBy="likedUsers")
 	private Set<User> likedUsers;
 	
 	@ManyToMany
 	@JoinTable(name = "user_liked_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "liked_user_id"))
-	private Set<User> user_likes;
+	private Set<User> userLikes;
 
 	public int getId() {
 		return id;
@@ -141,17 +141,25 @@ public class User {
 		this.likedUsers = likedUsers;
 	}
 
-	public Set<User> getUser_likes() {
-		return user_likes;
+	public Set<User> getUserLikes() {
+		return userLikes;
 	}
 
-	public void setUser_likes(Set<User> user_likes) {
-		this.user_likes = user_likes;
+	public void setUserLikes(Set<User> userLikes) {
+		this.userLikes = userLikes;
+	}
+	
+	public Set<Post> getPosts() {
+		return posts;
 	}
 
-	public User(int id, String name, String familyName, String email, Gender gender, Date birthdate,
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
+	}
+
+	public User(int id, String name, String familyName, String email, Gender gender, Date birthdate, Set<Post> posts,
 			Set<Comment> comments, Set<Comment> likedComments, Set<Post> likedPosts, Set<User> likedUsers,
-			Set<User> user_likes) {
+			Set<User> userLikes) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -159,12 +167,13 @@ public class User {
 		this.email = email;
 		this.gender = gender;
 		this.birthdate = birthdate;
+		this.posts = posts;
 		this.comments = comments;
 		this.likedComments = likedComments;
 		this.likedPosts = likedPosts;
 		this.likedUsers = likedUsers;
-		this.user_likes = user_likes;
+		this.userLikes = userLikes;
 	}
-	
+
 	
 }

@@ -24,11 +24,11 @@ public class Comment {
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable=false)
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "post_id")
+	@JoinColumn(name = "post_id", nullable=false)
 	private Post post;
 
 	@Column(name = "content")
@@ -38,8 +38,8 @@ public class Comment {
 	private LocalDate creationDate;
 
 	@ManyToMany
-	@JoinTable(name = "user_liked_post", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
-	private Set<User> commentLikes;
+	@JoinTable(name = "user_liked_comment", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
+	private Set<User> likedComments;
 
 	public int getId() {
 		return id;
@@ -81,25 +81,23 @@ public class Comment {
 		this.creationDate = creationDate;
 	}
 
-	public Set<User> getCommentLikes() {
-		return commentLikes;
+	public Set<User> getLikedComments() {
+		return likedComments;
 	}
 
-	public void setCommentLikes(Set<User> commentLikes) {
-		this.commentLikes = commentLikes;
+	public void setLikedComments(Set<User> likedComments) {
+		this.likedComments = likedComments;
 	}
 
-	public Comment(int id, User user, Post post, String content, LocalDate creationDate, Set<User> commentLikes) {
+	public Comment(int id, User user, Post post, String content, LocalDate creationDate, Set<User> likedComments) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.post = post;
 		this.content = content;
 		this.creationDate = creationDate;
-		this.commentLikes = commentLikes;
+		this.likedComments = likedComments;
 	}
-
-
 	
 	
 }
