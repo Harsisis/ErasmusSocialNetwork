@@ -61,4 +61,14 @@ public class UserService implements IService<User, UserDto, UserFilter> {
 		}
 		return false;
 	}
+
+	public boolean like(int id, int userId) {
+		Optional<User> userToLike = userRepository.findById(id);
+		Optional<User> user = userRepository.findById(userId);
+		if(userToLike.isPresent() && user.isPresent()) {
+			user.get().getLikedUsers().add(userToLike.get());
+			userRepository.save(user.get());
+		}
+		return false;
+	}
 }
