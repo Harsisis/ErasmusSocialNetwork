@@ -21,12 +21,15 @@ public class LikedPostService implements IService<LikedPostStruct> {
 	@Override
 	public boolean like(LikedPostStruct structToSave) {
 		likedPostRepository.save(likedPostMapper.likedPostStructToLikedPost(structToSave));
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean unlike(LikedPostStruct structToSave) {
-		// TODO Auto-generated method stub
+		if (likedPostRepository.existsById(structToSave.getId())) {
+			likedPostRepository.delete(likedPostRepository.findById(structToSave.getId()).get());
+			return true;
+		}
 		return false;
 	}
 
@@ -35,7 +38,5 @@ public class LikedPostService implements IService<LikedPostStruct> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-
 
 }

@@ -8,11 +8,23 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="liked_post")
 public class LikedPost {
+	
+	@Id
+	@Column(name="id")
+	private int id;
 
 	@Id
 	@Column(name="post_id")
 	private int postId;
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Id
 	@Column(name="user_id")
 	private int userId;
@@ -38,5 +50,7 @@ public class LikedPost {
 		this.postId = postId;
 		this.userId = userId;
 	}
+	
+	
 	
 }

@@ -2,6 +2,7 @@ package fr.erasmus.socialNetwork.struct;
 
 public class LikedPostStruct {
 
+	private int id;
 	private int postId;
 	private int userId;
 	public int getPostId() {
@@ -20,5 +21,11 @@ public class LikedPostStruct {
 		super();
 		this.postId = postId;
 		this.userId = userId;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }
