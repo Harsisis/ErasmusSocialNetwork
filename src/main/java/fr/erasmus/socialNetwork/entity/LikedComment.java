@@ -53,5 +53,8 @@ public class LikedComment {
 		this.userId = userId;
 	}
 
+	public LikedComment() {
+	}
+
 	
 }

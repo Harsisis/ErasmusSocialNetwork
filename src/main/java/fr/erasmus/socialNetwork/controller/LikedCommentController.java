@@ -15,28 +15,31 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.erasmus.socialNetwork.service.LikedCommentService;
 import fr.erasmus.socialNetwork.struct.LikedCommentStruct;
 
-
-
 @RestController
 @RequestMapping("/comment")
 public class LikedCommentController {
 
-    @Autowired 
-    private LikedCommentService likedCommentService;
+	@Autowired
+	private LikedCommentService likedCommentService;
 
-    @PostMapping(name="/like")
-    public ResponseEntity<Boolean> likeComment(@RequestBody LikedCommentStruct likedCommentStruct){
-        return ResponseEntity.status(HttpStatus.OK).body(likedCommentService.like(likedCommentStruct));
-    }
-    
-    @PostMapping(name="/unlike")
-    public ResponseEntity<Boolean> unlikeComment(@RequestBody LikedCommentStruct likedCommentStruct){
-        return ResponseEntity.status(HttpStatus.OK).body(likedCommentService.unlike(likedCommentStruct));
-    }
-    
-    @GetMapping(name="/allLiked")
-    public ResponseEntity<List<LikedCommentStruct>> findAllLikedComment(@RequestHeader("userId") int userId){
-        return ResponseEntity.status(HttpStatus.OK).body(likedCommentService.likedByUser(userId));
-    }
+	@PostMapping(value = "/like")
+	public ResponseEntity<Boolean> likeComment(@RequestBody LikedCommentStruct likedCommentStruct) {
+		return ResponseEntity.status(HttpStatus.OK).body(likedCommentService.like(likedCommentStruct));
+	}
+
+	@PostMapping(value = "/unlike")
+	public ResponseEntity<Boolean> unlikeComment(@RequestBody LikedCommentStruct likedCommentStruct) {
+		return ResponseEntity.status(HttpStatus.OK).body(likedCommentService.unlike(likedCommentStruct));
+	}
+
+	@GetMapping(value = "/allLiked")
+	public ResponseEntity<List<LikedCommentStruct>> findAllLikedCommentByUser(@RequestHeader("userId") int userId) {
+		return ResponseEntity.status(HttpStatus.OK).body(likedCommentService.likedByUser(userId));
+	}
+	
+	@GetMapping(value = "/all")
+	public ResponseEntity<List<LikedCommentStruct>> findAllLikedComment() {
+		return ResponseEntity.status(HttpStatus.OK).body(likedCommentService.findAll());
+	}
 
 }

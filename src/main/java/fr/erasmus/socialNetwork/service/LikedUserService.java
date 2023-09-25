@@ -39,4 +39,10 @@ public class LikedUserService implements IService<LikedUserStruct> {
 		return likedUserRepository.findAllWithUserId(userId).stream().map(likedUserMapper::likedUserToLikedUserStruct)
 				.collect(Collectors.toList());
 	}
+	
+	@Override
+	public List<LikedUserStruct> findAll() {
+		return likedUserRepository.findAll().stream().map(likedUserMapper::likedUserToLikedUserStruct)
+				.collect(Collectors.toList());
+	}
 }

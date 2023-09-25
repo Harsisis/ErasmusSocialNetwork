@@ -32,6 +32,8 @@ public class LikedCommentStruct {
 		this.commentId = commentId;
 		this.userId = userId;
 	}
+	public LikedCommentStruct() {
+	}
 	
 	
 }

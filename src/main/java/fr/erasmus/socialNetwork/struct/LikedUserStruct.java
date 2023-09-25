@@ -30,6 +30,8 @@ public class LikedUserStruct {
 		this.userId = userId;
 		this.likedUserId = likedUserId;
 	}
+	public LikedUserStruct() {
+	}
 	
 	
 }

@@ -29,5 +29,12 @@ public interface IService<V> {
 	 * @return
 	 */
 	List<V> likedByUser(int userId);
+	
+	/**
+	 * List of Objects
+	 * @param userId
+	 * @return
+	 */
+	List<V> findAll();
 
 }

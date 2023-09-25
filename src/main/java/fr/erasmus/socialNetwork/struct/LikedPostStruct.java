@@ -22,6 +22,8 @@ public class LikedPostStruct {
 		this.postId = postId;
 		this.userId = userId;
 	}
+	public LikedPostStruct() {
+	}
 	public int getId() {
 		return id;
 	}

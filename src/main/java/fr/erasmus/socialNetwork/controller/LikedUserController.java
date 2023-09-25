@@ -15,30 +15,27 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.erasmus.socialNetwork.service.LikedUserService;
 import fr.erasmus.socialNetwork.struct.LikedUserStruct;
 
-
-
 @RestController
-@RequestMapping(name = "/user")
+@RequestMapping(value = "/user")
 public class LikedUserController {
 
 	@Autowired
 	private LikedUserService likedUserService;
-	
-    @PostMapping(name="/like")
-    public ResponseEntity<Boolean> likeComment(@RequestBody LikedUserStruct LikedUserStruct){
-        return ResponseEntity.status(HttpStatus.OK).body(likedUserService.like(LikedUserStruct));
-    }
-    
-    @PostMapping(name="/unlike")
-    public ResponseEntity<Boolean> unlikeComment(@RequestBody LikedUserStruct LikedUserStruct){
-        return ResponseEntity.status(HttpStatus.OK).body(likedUserService.unlike(LikedUserStruct));
-    }
-    
-    @GetMapping(name="/allLiked")
-    public ResponseEntity<List<LikedUserStruct>> findAllLikedComment(@RequestHeader("userId") int userId){
-        return ResponseEntity.status(HttpStatus.OK).body(likedUserService.likedByUser(userId));
 
-    }
+	@PostMapping(value = "/like")
+	public ResponseEntity<Boolean> likeComment(@RequestBody LikedUserStruct LikedUserStruct) {
+		return ResponseEntity.status(HttpStatus.OK).body(likedUserService.like(LikedUserStruct));
+	}
+
+	@PostMapping(value = "/unlike")
+	public ResponseEntity<Boolean> unlikeComment(@RequestBody LikedUserStruct LikedUserStruct) {
+		return ResponseEntity.status(HttpStatus.OK).body(likedUserService.unlike(LikedUserStruct));
+	}
+
+	@GetMapping(value = "/allLiked")
+	public ResponseEntity<List<LikedUserStruct>> findAllLikedComment(@RequestHeader("userId") int userId) {
+		return ResponseEntity.status(HttpStatus.OK).body(likedUserService.likedByUser(userId));
+
+	}
 
 }
-

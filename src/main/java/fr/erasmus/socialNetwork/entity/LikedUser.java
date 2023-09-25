@@ -53,5 +53,8 @@ public class LikedUser {
 		this.likedUserId = likedUserId;
 	}
 
+	public LikedUser() {
+	}
+
 	
 }

@@ -1,13 +1,33 @@
 package fr.erasmus.socialNetwork.mapper;
 
-import org.mapstruct.Mapper;
+
+import org.springframework.stereotype.Component;
 
 import fr.erasmus.socialNetwork.entity.LikedPost;
 import fr.erasmus.socialNetwork.struct.LikedPostStruct;
 
-
-@Mapper
-public interface LikedPostMapper{
-	LikedPostStruct likedPostToLikedPostStruct(LikedPost post);
-	LikedPost likedPostStructToLikedPost(LikedPostStruct postStruct);
+@Component
+public class LikedPostMapper{
+	public LikedPostStruct likedPostToLikedPostStruct(LikedPost post) {
+		if(post == null) {
+			return null;
+		}
+		LikedPostStruct struct = new LikedPostStruct();
+		struct.setId(post.getId());
+		struct.setPostId(post.getPostId());
+		struct.setUserId(post.getUserId());
+		
+		return struct;
+	}
+	public LikedPost likedPostStructToLikedPost(LikedPostStruct postStruct) {
+		if(postStruct == null) {
+			return null;
+		}
+		LikedPost entity = new LikedPost();
+		entity.setId(postStruct.getId());
+		entity.setPostId(postStruct.getPostId());
+		entity.setUserId(postStruct.getUserId());
+		
+		return entity;
+	}
 }

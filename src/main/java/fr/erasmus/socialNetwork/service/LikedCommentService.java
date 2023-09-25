@@ -39,4 +39,10 @@ public class LikedCommentService implements IService<LikedCommentStruct> {
 		return likedCommentRepository.findAllWithUserId(userId).stream().map(likedCommentMapper::likedCommentToLikedCommentStruct)
 				.collect(Collectors.toList());
 	}
+
+	@Override
+	public List<LikedCommentStruct> findAll() {
+		return likedCommentRepository.findAll().stream().map(likedCommentMapper::likedCommentToLikedCommentStruct)
+				.collect(Collectors.toList());
+	}
 }
