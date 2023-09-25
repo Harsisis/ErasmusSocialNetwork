@@ -16,12 +16,12 @@ import fr.erasmus.socialNetwork.service.LikedCommentService;
 import fr.erasmus.socialNetwork.struct.LikedCommentStruct;
 
 
+
 @RestController
 @RequestMapping("/comment")
 public class LikedCommentController {
 
     @Autowired 
-
     private LikedCommentService likedCommentService;
 
     @PostMapping(name="/like")

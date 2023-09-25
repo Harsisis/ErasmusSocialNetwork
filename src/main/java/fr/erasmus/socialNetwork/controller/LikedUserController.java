@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.erasmus.socialNetwork.service.LikedUserService;
 import fr.erasmus.socialNetwork.struct.LikedUserStruct;
 
+
+
 @RestController
 @RequestMapping(name = "/user")
 public class LikedUserController {
@@ -36,4 +38,7 @@ public class LikedUserController {
     public ResponseEntity<List<LikedUserStruct>> findAllLikedComment(@RequestHeader("userId") int userId){
         return ResponseEntity.status(HttpStatus.OK).body(likedUserService.likedByUser(userId));
 
-    }}
+    }
+
+}
+
