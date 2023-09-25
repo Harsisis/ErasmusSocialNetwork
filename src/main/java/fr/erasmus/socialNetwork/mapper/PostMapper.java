@@ -1,3 +1,5 @@
+package fr.erasmus.socialNetwork.mapper;
+
 import org.mapstruct.Mapper;
 
 import fr.erasmus.socialNetwork.entity.Post;
