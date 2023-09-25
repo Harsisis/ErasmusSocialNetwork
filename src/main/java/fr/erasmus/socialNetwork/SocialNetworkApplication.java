@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SocialNetworkApplication {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(SocialNetworkApplication.class);
 
 	public static void main(String[] args) {
