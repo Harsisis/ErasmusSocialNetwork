@@ -14,14 +14,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter 
-@Setter 
-@NoArgsConstructor
 @Table(name="post")
 public class Post {
 
@@ -46,4 +40,65 @@ public class Post {
 	@ManyToMany
 	@JoinTable(name = "user_liked_post", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
 	private Set<User> post_likes;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public LocalDate getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(LocalDate creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public Set<User> getPost_likes() {
+		return post_likes;
+	}
+
+	public void setPost_likes(Set<User> post_likes) {
+		this.post_likes = post_likes;
+	}
+
+	public Post(int id, User user, LocalDate creationDate, String content, Set<Comment> comments,
+			Set<User> post_likes) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.creationDate = creationDate;
+		this.content = content;
+		this.comments = comments;
+		this.post_likes = post_likes;
+	}
+	
+	
 }
