@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.erasmus.socialNetwork.service.LikedCommentService;
 import fr.erasmus.socialNetwork.struct.LikedCommentStruct;
 
+
 @RestController
 @RequestMapping("/comment")
 public class LikedCommentController {
 
     @Autowired 
+
     private LikedCommentService likedCommentService;
 
     @PostMapping(name="/like")
@@ -36,4 +38,5 @@ public class LikedCommentController {
     public ResponseEntity<List<LikedCommentStruct>> findAllLikedComment(@RequestHeader("userId") int userId){
         return ResponseEntity.status(HttpStatus.OK).body(likedCommentService.likedByUser(userId));
     }
+
 }

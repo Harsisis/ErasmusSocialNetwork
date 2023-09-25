@@ -5,11 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< Updated upstream
-=======
-import fr.erasmus.socialNetwork.entity.LikedComment;
-import fr.erasmus.socialNetwork.filter.CommentFilter;
->>>>>>> Stashed changes
 import fr.erasmus.socialNetwork.mapper.LikedCommentMapper;
 import fr.erasmus.socialNetwork.repository.LikedCommentRepository;
 import fr.erasmus.socialNetwork.struct.LikedCommentStruct;

@@ -35,5 +35,5 @@ public class LikedUserController {
     @GetMapping(name="/allLiked")
     public ResponseEntity<List<LikedUserStruct>> findAllLikedComment(@RequestHeader("userId") int userId){
         return ResponseEntity.status(HttpStatus.OK).body(likedUserService.likedByUser(userId));
-    }
-}
+
+    }}
