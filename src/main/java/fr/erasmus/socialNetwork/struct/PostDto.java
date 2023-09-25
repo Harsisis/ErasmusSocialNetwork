@@ -1,6 +1,6 @@
 package fr.erasmus.socialNetwork.struct;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.Set;
 
 import fr.erasmus.socialNetwork.entity.User;
@@ -12,10 +12,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PostDto {
+	
+	private int id;
+	private UserDto user;
+	private String content;
+	private Date creationDate;
+	private Set<User> usersLiked;
 
-        private int id;
-        private UserDto user;
-        private String content;
-        private LocalDate creationDate;
-        private Set<User> likes;
 }

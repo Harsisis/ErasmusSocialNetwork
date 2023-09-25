@@ -47,15 +47,9 @@ public class CommentService implements IService<Comment, CommentDto, CommentFilt
 	}
 
 	@Override
-	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean exist(CommentDto struct) {
+	public boolean delete(int id) {
 		// TODO Auto-generated method stub
 		return false;
+		
 	}
-
 }

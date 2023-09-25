@@ -47,7 +47,7 @@ public class UserService implements IService<User, UserDto, UserFilter> {
 	public UserDto update(UserDto struct) {
 		Optional<User> userToUpdate = userRepository.findById(struct.getId());
 		if(userToUpdate.isPresent()) {
-			return userRepository.save(userToUpdate.get());
+			return userMapper.userToUserDto(userRepository.save(userToUpdate.get()));
 		}
 		return null;
 	}
