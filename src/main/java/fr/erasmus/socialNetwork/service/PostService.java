@@ -18,8 +18,8 @@ public class PostService implements IService<Post, PostDto, PostFilter> {
 
 	@Override
 	public PostDto find(int id) {
-		post = postRepository.findById(id);
-		return post;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override

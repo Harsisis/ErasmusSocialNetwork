@@ -54,4 +54,5 @@ public class PostController {
 //	public ResponseEntity<PostDto> likePost(@PathVariable("id")int id){
 //		return ResponseEntity.status(HttpStatus.OK).body(postService.))
 //	}
+
 }
