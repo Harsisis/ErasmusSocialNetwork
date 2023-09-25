@@ -29,9 +29,9 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
-    @GetMapping(name="/like/{id}")
-    public ResponseEntity<Boolean> likeComment(@PathVariable("id") int id){
-        commentService.like(id);
+    @GetMapping(name="/like/{id}/user/{userId}")
+    public ResponseEntity<Boolean> likeComment(@PathVariable("id") int id, @PathVariable("userId") int userId){
+        commentService.like(id, userId);
         return ResponseEntity.status(HttpStatus.OK).body(true);
     }
 }
