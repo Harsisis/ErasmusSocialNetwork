@@ -6,7 +6,7 @@ import fr.erasmus.socialNetwork.entity.LikedComment;
 import fr.erasmus.socialNetwork.struct.LikedCommentStruct;
 
 @Mapper
-public interface CommentMapper {
+public interface LikedCommentMapper {
 	LikedCommentStruct likedCommentToLikedCommentStruct(LikedComment comment);
 	LikedComment likedCommentStructToLikedComment(LikedCommentStruct commentDto);
 }

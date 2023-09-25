@@ -2,6 +2,8 @@ package fr.erasmus.socialNetwork.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -10,10 +12,13 @@ import jakarta.persistence.Table;
 public class LikedComment {
 
 	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	
 	@Column(name="comment_id")
 	private int commentId;
 	
-	@Id
 	@Column(name="user_id")
 	private int userId;
 
@@ -33,10 +38,20 @@ public class LikedComment {
 		this.userId = userId;
 	}
 
-	public LikedComment(int commentId, int userId) {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public LikedComment(int id, int commentId, int userId) {
 		super();
+		this.id = id;
 		this.commentId = commentId;
 		this.userId = userId;
 	}
+
 	
 }
