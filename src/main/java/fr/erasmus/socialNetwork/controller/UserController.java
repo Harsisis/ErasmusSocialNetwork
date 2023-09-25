@@ -24,27 +24,27 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping(name="/{id}")
+	@GetMapping("/find/{id}")
 	public ResponseEntity<UserDto> getUser(@PathVariable("id") int id){
 		return ResponseEntity.status(HttpStatus.OK).body(userService.find(id));
 	}
 	
-	@GetMapping()
-	public ResponseEntity<List<UserDto>> getAll(){
+	@GetMapping("/find/all")
+	public ResponseEntity<List<UserDto>> getAllUsers(){
 		return ResponseEntity.status(HttpStatus.OK).body(userService.findAll());
 	}
 	
-	@PostMapping()
+	@PostMapping("/create")
 	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
 		return ResponseEntity.status(HttpStatus.OK).body(userService.create(userDto));
 	}
 	
-	@PutMapping()
+	@PutMapping("/update")
 	public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto){
 		return ResponseEntity.status(HttpStatus.OK).body(userService.update(userDto));
 	}
 	
-	@DeleteMapping(name="/{id}")
+	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Boolean> deleteUser(@PathVariable("id") int id){
 		userService.delete(id);
 		return ResponseEntity.status(HttpStatus.OK).body(true);

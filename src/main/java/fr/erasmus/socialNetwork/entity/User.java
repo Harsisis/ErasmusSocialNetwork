@@ -51,16 +51,16 @@ public class User {
 	@OneToMany(mappedBy="user")
     private Set<Comment> comments;
 	
-	@ManyToMany(mappedBy="user")
+	@ManyToMany(mappedBy="comment_likes")
 	private Set<Comment> likedComments;
 	
-	@ManyToMany(mappedBy="user")
+	@ManyToMany(mappedBy="post_likes")
 	private Set<Post> likedPosts;
 	
-	@ManyToMany(mappedBy="user")
+	@ManyToMany(mappedBy="user_likes")
 	private Set<User> likedUsers;
 	
 	@ManyToMany
 	@JoinTable(name = "user_liked_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "liked_user_id"))
-	private Set<User> likes;
+	private Set<User> user_likes;
 }
