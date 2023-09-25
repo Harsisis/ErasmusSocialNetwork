@@ -48,16 +48,6 @@ public interface IService<E, S, F> {
 	 * @param struct
 	 * @return
 	 */
-	void delete(int id);
-	
-	/**
-	 * Check if Structure already exist in db
-	 * 
-	 * <p style="color:red;">⚠️ To call before create or update ⚠️</p>
-	 * 
-	 * @param struct
-	 * @return
-	 */
-	boolean exist(S struct);
+	boolean delete(int id);
 
 }
