@@ -18,8 +18,7 @@ public class CommentService implements IService<Comment, CommentDto, CommentFilt
 	
 	@Override
 	public CommentDto find(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return commentRepository.findById(id).get();
 	}
 
 	@Override
@@ -56,6 +55,12 @@ public class CommentService implements IService<Comment, CommentDto, CommentFilt
 	public boolean exist(CommentDto struct) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public void like(int id, int userId) {
+		CommentDto commentDto = find(id);
+		commentDto.getLikes().add(userId);
+		update(commentDto);
 	}
 
 }
