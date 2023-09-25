@@ -13,62 +13,27 @@ import fr.erasmus.socialNetwork.repository.LikedCommentRepository;
 import fr.erasmus.socialNetwork.struct.LikedCommentStruct;
 
 @Service
-public class LikedCommentService implements IService<LikedComment, LikedCommentStruct, CommentFilter> {
-
+public class LikedCommentService implements IService {
+	
 	@Autowired
 	private LikedCommentRepository likedCommentRepository;
-	
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private CommentMapper commentMapper;
-	
-	@Override
-	public LikedCommentStruct find(int id) {
-		return commentMapper.likedCommentToLikedCommentStruct(likedCommentRepository.findById(id).get());
-	}
 
 	@Override
-	public List<LikedCommentStruct> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public List<LikedCommentStruct> findAllFiltered(CommentFilter filter) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public LikedCommentStruct create(LikedCommentStruct struct) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public LikedCommentStruct update(LikedCommentStruct struct) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean delete(int id) {
-		// TODO Auto-generated method stub
-		return false;
-		
-	}
-
 	public boolean like(int id, int userId) {
-		Optional<LikedComment> LikedComment = likedCommentRepository.findById(id);
-		if(LikedComment.isPresent()) {
-			LikedCommentStruct LikedCommentStruct = find(id);
-			update(LikedCommentStruct);
-			return true;
-		}
+		// TODO Auto-generated method stub
 		return false;
-		
+	}
+
+	@Override
+	public boolean unlike(int id, int userId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Integer> likedByUser(int userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

@@ -4,15 +4,16 @@ import java.util.List;
 
 /**
  * Interface for default CRUD service methods
+ * @param V --> struct
  */
-public interface IService {
+public interface IService<V> {
 	/**
 	 * Like Object
 	 * @param id
 	 * @param userId
 	 * @return
 	 */
-	boolean like(int id, int userId);
+	boolean like(V structToSave);
 	
 	/**
 	 * UnLike Object
@@ -20,13 +21,13 @@ public interface IService {
 	 * @param userId
 	 * @return
 	 */
-	boolean unlike(int id, int userId);
+	boolean unlike(V structToSave);
 	
 	/**
 	 * List of Objects liked by User
 	 * @param userId
 	 * @return
 	 */
-	List<Integer> likedByUser(int userId);
+	List<V> likedByUser(int userId);
 
 }
