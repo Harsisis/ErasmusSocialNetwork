@@ -1,6 +1,7 @@
 package fr.erasmus.socialNetwork.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class LikedCommentService implements IService<LikedCommentStruct> {
 
 	@Override
 	public List<LikedCommentStruct> likedByUser(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return likedCommentRepository.findAllWithUserId(userId).stream().map(likedCommentMapper::likedCommentToLikedCommentStruct)
+				.collect(Collectors.toList());
 	}
 }
