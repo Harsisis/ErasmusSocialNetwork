@@ -1,39 +1,41 @@
 package fr.erasmus.socialNetwork.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.erasmus.socialNetwork.entity.LikedComment;
-import fr.erasmus.socialNetwork.filter.CommentFilter;
-import fr.erasmus.socialNetwork.mapper.CommentMapper;
+import fr.erasmus.socialNetwork.mapper.LikedCommentMapper;
 import fr.erasmus.socialNetwork.repository.LikedCommentRepository;
 import fr.erasmus.socialNetwork.struct.LikedCommentStruct;
 
 @Service
-public class LikedCommentService implements IService {
+public class LikedCommentService implements IService<LikedCommentStruct> {
 	
 	@Autowired
 	private LikedCommentRepository likedCommentRepository;
+	
+	@Autowired
+	private LikedCommentMapper likedCommentMapper;
 
 	@Override
-	public boolean like(int id, int userId) {
-		// TODO Auto-generated method stub
+	public boolean like(LikedCommentStruct structToSave) {
+		likedCommentRepository.save(likedCommentMapper.likedCommentStructToLikedComment(structToSave));
+		return true;
+	}
+
+	@Override
+	public boolean unlike(LikedCommentStruct structToSave) {
+		if(likedCommentRepository.existsById(structToSave.getId())) {
+			likedCommentRepository.delete(likedCommentRepository.findById(structToSave.getId()).get());
+			return true;
+		}
 		return false;
 	}
 
 	@Override
-	public boolean unlike(int id, int userId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List<Integer> likedByUser(int userId) {
+	public List<LikedCommentStruct> likedByUser(int userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 }
