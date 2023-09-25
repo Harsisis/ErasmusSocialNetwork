@@ -39,7 +39,7 @@ public class Comment {
 
 	@ManyToMany
 	@JoinTable(name = "user_liked_post", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
-	private Set<User> comment_likes;
+	private Set<User> commentLikes;
 
 	public int getId() {
 		return id;
@@ -81,23 +81,25 @@ public class Comment {
 		this.creationDate = creationDate;
 	}
 
-	public Set<User> getComment_likes() {
-		return comment_likes;
+	public Set<User> getCommentLikes() {
+		return commentLikes;
 	}
 
-	public void setComment_likes(Set<User> comment_likes) {
-		this.comment_likes = comment_likes;
+	public void setCommentLikes(Set<User> commentLikes) {
+		this.commentLikes = commentLikes;
 	}
 
-	public Comment(int id, User user, Post post, String content, LocalDate creationDate, Set<User> comment_likes) {
+	public Comment(int id, User user, Post post, String content, LocalDate creationDate, Set<User> commentLikes) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.post = post;
 		this.content = content;
 		this.creationDate = creationDate;
-		this.comment_likes = comment_likes;
+		this.commentLikes = commentLikes;
 	}
+
+
 	
 	
 }

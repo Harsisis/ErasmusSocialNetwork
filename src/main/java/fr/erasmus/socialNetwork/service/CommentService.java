@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import fr.erasmus.socialNetwork.entity.Comment;
 import fr.erasmus.socialNetwork.filter.CommentFilter;
+import fr.erasmus.socialNetwork.mapper.CommentMapper;
 import fr.erasmus.socialNetwork.repository.CommentRepository;
 import fr.erasmus.socialNetwork.struct.CommentDto;
 
@@ -16,9 +17,12 @@ public class CommentService implements IService<Comment, CommentDto, CommentFilt
 	@Autowired
 	private CommentRepository commentRepository;
 	
+	@Autowired
+	private CommentMapper commentMapper;
+	
 	@Override
 	public CommentDto find(int id) {
-		return commentRepository.findById(id).get();
+		return commentMapper.commentToCommentDto(commentRepository.findById(id).get());
 	}
 
 	@Override
@@ -54,7 +58,7 @@ public class CommentService implements IService<Comment, CommentDto, CommentFilt
 
 	public void like(int id, int userId) {
 		CommentDto commentDto = find(id);
-		commentDto.getLikes().add(userId);
+		commentDto.getCommentLikes().add(userId);
 		update(commentDto);
 	}
 	

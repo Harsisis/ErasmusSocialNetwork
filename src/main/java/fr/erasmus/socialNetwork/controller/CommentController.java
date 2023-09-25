@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fr.erasmus.socialNetwork.service.CommentService;
@@ -42,8 +43,8 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
-    @GetMapping(name="/like/{id}/user/{userId}")
-    public ResponseEntity<Boolean> likeComment(@PathVariable("id") int id, @PathVariable("userId") int userId){
+    @GetMapping(name="/like")
+    public ResponseEntity<Boolean> likeComment(@RequestHeader("id") int id, @RequestHeader("userId") int userId){
         commentService.like(id, userId);
         return ResponseEntity.status(HttpStatus.OK).body(true);
     }

@@ -10,7 +10,7 @@ public class CommentDto {
         private PostDto post;
         private String content;
         private LocalDate creationDate;
-        private Set<UserDto> comment_likes;
+        private Set<UserDto> commentLikes;
 		public int getId() {
 			return id;
 		}
@@ -41,21 +41,22 @@ public class CommentDto {
 		public void setCreationDate(LocalDate creationDate) {
 			this.creationDate = creationDate;
 		}
-		public Set<UserDto> getComment_likes() {
-			return comment_likes;
+		
+		public Set<UserDto> getCommentLikes() {
+			return commentLikes;
 		}
-		public void setComment_likes(Set<UserDto> comment_likes) {
-			this.comment_likes = comment_likes;
+		public void setCommentLikes(Set<UserDto> commentLikes) {
+			this.commentLikes = commentLikes;
 		}
 		public CommentDto(int id, UserDto user, PostDto post, String content, LocalDate creationDate,
-				Set<UserDto> comment_likes) {
+				Set<UserDto> commentLikes) {
 			super();
 			this.id = id;
 			this.user = user;
 			this.post = post;
 			this.content = content;
 			this.creationDate = creationDate;
-			this.comment_likes = comment_likes;
+			this.commentLikes = commentLikes;
 		}
         
         
