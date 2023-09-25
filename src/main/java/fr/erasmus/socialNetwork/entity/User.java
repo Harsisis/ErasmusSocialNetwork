@@ -11,6 +11,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -47,4 +50,17 @@ public class User {
 	
 	@OneToMany(mappedBy="user")
     private Set<Comment> comments;
+	
+	@ManyToMany(mappedBy="user")
+	private Set<Comment> likedComments;
+	
+	@ManyToMany(mappedBy="user")
+	private Set<Post> likedPosts;
+	
+	@ManyToMany(mappedBy="user")
+	private Set<User> likedUsers;
+	
+	@ManyToMany
+	@JoinTable(name = "user_liked_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "liked_user_id"))
+	private Set<User> likes;
 }
