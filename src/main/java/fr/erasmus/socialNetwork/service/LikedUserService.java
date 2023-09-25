@@ -1,6 +1,7 @@
 package fr.erasmus.socialNetwork.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,10 @@ public class LikedUserService implements IService<LikedUserStruct> {
 
 	@Autowired
 	private LikedUserRepository likedUserRepository;
-	
+
 	@Autowired
 	private LikedUserMapper likedUserMapper;
-	
+
 	@Override
 	public boolean like(LikedUserStruct structToSave) {
 		likedUserRepository.save(likedUserMapper.likedUserStructToLikedUser(structToSave));
@@ -26,7 +27,7 @@ public class LikedUserService implements IService<LikedUserStruct> {
 
 	@Override
 	public boolean unlike(LikedUserStruct structToSave) {
-		if(likedUserRepository.existsById(structToSave.getId())) {
+		if (likedUserRepository.existsById(structToSave.getId())) {
 			likedUserRepository.delete(likedUserRepository.findById(structToSave.getId()).get());
 			return true;
 		}
@@ -35,7 +36,7 @@ public class LikedUserService implements IService<LikedUserStruct> {
 
 	@Override
 	public List<LikedUserStruct> likedByUser(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return likedUserRepository.findAllWithUserId(userId).stream().map(likedUserMapper::likedUserToLikedUserStruct)
+				.collect(Collectors.toList());
 	}
 }
