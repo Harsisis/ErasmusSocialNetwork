@@ -33,7 +33,7 @@ public class LikedUserController {
 		return ResponseEntity.status(HttpStatus.OK).body(likedUserService.unlike(LikedUserId));
 	}
 
-	@GetMapping(value = "/allLiked")
+	@GetMapping(value = "/allLikedBy")
 	public ResponseEntity<List<LikedUserStruct>> findAllLikedUserByUser(@RequestHeader("userId") int userId) {
 		return ResponseEntity.status(HttpStatus.OK).body(likedUserService.likedByUser(userId));
 

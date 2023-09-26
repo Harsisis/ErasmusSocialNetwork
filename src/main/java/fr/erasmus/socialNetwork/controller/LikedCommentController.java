@@ -28,7 +28,7 @@ public class LikedCommentController {
 		return ResponseEntity.status(HttpStatus.OK).body(likedCommentService.like(likedCommentStruct));
 	}
 
-	@DeleteMapping(value = "/unlike")
+	@DeleteMapping(value = "/unlikeBy")
 	public ResponseEntity<Boolean> unlikeComment(@RequestHeader int likedCommentId) {
 		return ResponseEntity.status(HttpStatus.OK).body(likedCommentService.unlike(likedCommentId));
 	}

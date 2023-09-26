@@ -28,7 +28,7 @@ public class LikedPostController {
 		return ResponseEntity.status(HttpStatus.OK).body(likedPostService.like(likedPostStruct));
 	}
 
-	@DeleteMapping(value = "/unlike")
+	@DeleteMapping(value = "/unlikeBy")
 	public ResponseEntity<Boolean> unlikePost(@RequestHeader int likedPostId) {
 		return ResponseEntity.status(HttpStatus.OK).body(likedPostService.unlike(likedPostId));
 	}
