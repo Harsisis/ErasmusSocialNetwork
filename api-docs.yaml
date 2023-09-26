@@ -1,0 +1,283 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8082/api
+  description: Generated server url
+paths:
+  /user/like:
+    post:
+      tags:
+      - liked-user-controller
+      operationId: likeUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LikedUserStruct'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LikedUserStruct'
+  /post/like:
+    post:
+      tags:
+      - liked-post-controller
+      operationId: likePost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LikedPostStruct'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LikedPostStruct'
+  /comment/like:
+    post:
+      tags:
+      - liked-comment-controller
+      operationId: likeComment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LikedCommentStruct'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LikedCommentStruct'
+  /user/all:
+    get:
+      tags:
+      - liked-user-controller
+      operationId: findAllLikedUser
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LikedUserStruct'
+  /user/allLikedBy:
+    get:
+      tags:
+      - liked-user-controller
+      operationId: findAllLikedUserByUser
+      parameters:
+      - name: userId
+        in: header
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LikedUserStruct'
+  /post/all:
+    get:
+      tags:
+      - liked-post-controller
+      operationId: findAllLikedPost
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LikedPostStruct'
+  /post/allLiked:
+    get:
+      tags:
+      - liked-post-controller
+      operationId: findAllLikedPostByUser
+      parameters:
+      - name: userId
+        in: header
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LikedPostStruct'
+  /comment/all:
+    get:
+      tags:
+      - liked-comment-controller
+      operationId: findAllLikedComment
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LikedCommentStruct'
+  /comment/allLiked:
+    get:
+      tags:
+      - liked-comment-controller
+      operationId: findAllLikedCommentByUser
+      parameters:
+      - name: userId
+        in: header
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LikedCommentStruct'
+  /user/unlike:
+    delete:
+      tags:
+      - liked-user-controller
+      operationId: unlikeUser
+      parameters:
+      - name: LikedUserId
+        in: header
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /post/unlikeBy:
+    delete:
+      tags:
+      - liked-post-controller
+      operationId: unlikePost
+      parameters:
+      - name: likedPostId
+        in: header
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /comment/unlikeBy:
+    delete:
+      tags:
+      - liked-comment-controller
+      operationId: unlikeComment
+      parameters:
+      - name: likedCommentId
+        in: header
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+components:
+  schemas:
+    LikedUserStruct:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int32
+        likedUserId:
+          type: integer
+          format: int32
+        like:
+          type: string
+          enum:
+          - LIKE
+          - LOVE
+          - BRAVO
+          - WOAW
+    LikedPostStruct:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        postId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int32
+        like:
+          type: string
+          enum:
+          - LIKE
+          - LOVE
+          - BRAVO
+          - WOAW
+    LikedCommentStruct:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int32
+        commentId:
+          type: integer
+          format: int32
+        like:
+          type: string
+          enum:
+          - LIKE
+          - LOVE
+          - BRAVO
+          - WOAW
