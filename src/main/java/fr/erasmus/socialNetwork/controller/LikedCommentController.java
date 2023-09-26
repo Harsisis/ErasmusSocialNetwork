@@ -28,12 +28,12 @@ public class LikedCommentController {
 		return ResponseEntity.status(HttpStatus.OK).body(likedCommentService.like(likedCommentStruct));
 	}
 
-	@DeleteMapping(value = "/unlikeBy")
+	@DeleteMapping(value = "/unlike")
 	public ResponseEntity<Boolean> unlikeComment(@RequestHeader int likedCommentId) {
 		return ResponseEntity.status(HttpStatus.OK).body(likedCommentService.unlike(likedCommentId));
 	}
 
-	@GetMapping(value = "/allLiked")
+	@GetMapping(value = "/allLikedBy")
 	public ResponseEntity<List<LikedCommentStruct>> findAllLikedCommentByUser(@RequestHeader("userId") int userId) {
 		return ResponseEntity.status(HttpStatus.OK).body(likedCommentService.likedByUser(userId));
 	}

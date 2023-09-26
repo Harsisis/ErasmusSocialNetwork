@@ -28,12 +28,12 @@ public class LikedPostController {
 		return ResponseEntity.status(HttpStatus.OK).body(likedPostService.like(likedPostStruct));
 	}
 
-	@DeleteMapping(value = "/unlikeBy")
+	@DeleteMapping(value = "/unlike")
 	public ResponseEntity<Boolean> unlikePost(@RequestHeader int likedPostId) {
 		return ResponseEntity.status(HttpStatus.OK).body(likedPostService.unlike(likedPostId));
 	}
 
-	@GetMapping(value = "/allLiked")
+	@GetMapping(value = "/allLikedBy")
 	public ResponseEntity<List<LikedPostStruct>> findAllLikedPostByUser(@RequestHeader("userId") int userId) {
 		return ResponseEntity.status(HttpStatus.OK).body(likedPostService.likedByUser(userId));
 	}
