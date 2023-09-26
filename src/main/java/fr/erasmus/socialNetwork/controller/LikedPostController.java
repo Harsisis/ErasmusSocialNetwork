@@ -33,8 +33,13 @@ public class LikedPostController {
 	}
 
 	@GetMapping(value = "/allLiked")
-	public ResponseEntity<List<LikedPostStruct>> findAllLikedPost(@RequestHeader("userId") int userId) {
+	public ResponseEntity<List<LikedPostStruct>> findAllLikedPostByUser(@RequestHeader("userId") int userId) {
 		return ResponseEntity.status(HttpStatus.OK).body(likedPostService.likedByUser(userId));
+	}
+	
+	@GetMapping(value = "/all")
+	public ResponseEntity<List<LikedPostStruct>> findAllLikedPost() {
+		return ResponseEntity.status(HttpStatus.OK).body(likedPostService.findAll());
 	}
 
 }

@@ -23,19 +23,24 @@ public class LikedUserController {
 	private LikedUserService likedUserService;
 
 	@PostMapping(value = "/like")
-	public ResponseEntity<LikedUserStruct> likeComment(@RequestBody LikedUserStruct LikedUserStruct) {
+	public ResponseEntity<LikedUserStruct> likeUser(@RequestBody LikedUserStruct LikedUserStruct) {
 		return ResponseEntity.status(HttpStatus.OK).body(likedUserService.like(LikedUserStruct));
 	}
 
 	@PostMapping(value = "/unlike")
-	public ResponseEntity<Boolean> unlikeComment(@RequestBody LikedUserStruct LikedUserStruct) {
+	public ResponseEntity<Boolean> unlikeUser(@RequestBody LikedUserStruct LikedUserStruct) {
 		return ResponseEntity.status(HttpStatus.OK).body(likedUserService.unlike(LikedUserStruct));
 	}
 
 	@GetMapping(value = "/allLiked")
-	public ResponseEntity<List<LikedUserStruct>> findAllLikedComment(@RequestHeader("userId") int userId) {
+	public ResponseEntity<List<LikedUserStruct>> findAllLikedUserByUser(@RequestHeader("userId") int userId) {
 		return ResponseEntity.status(HttpStatus.OK).body(likedUserService.likedByUser(userId));
 
+	}
+	
+	@GetMapping(value = "/all")
+	public ResponseEntity<List<LikedUserStruct>> findAllLikedUser() {
+		return ResponseEntity.status(HttpStatus.OK).body(likedUserService.findAll());
 	}
 
 }
