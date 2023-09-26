@@ -15,6 +15,7 @@ public class LikedUserMapper {
 		struct.setId(user.getId());
 		struct.setLikedUserId(user.getLikedUserId());
 		struct.setUserId(user.getUserId());
+		struct.setLike(user.getLike());
 		
 		return struct;
 	}
@@ -27,6 +28,7 @@ public class LikedUserMapper {
 		entity.setId(userStruct.getId());
 		entity.setLikedUserId(userStruct.getLikedUserId());
 		entity.setUserId(userStruct.getUserId());
+		entity.setLike(userStruct.getLike());
 		
 		return entity;
 	}

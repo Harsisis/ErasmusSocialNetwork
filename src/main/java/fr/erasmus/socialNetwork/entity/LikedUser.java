@@ -1,7 +1,10 @@
 package fr.erasmus.socialNetwork.entity;
 
+import fr.erasmus.socialNetwork.enums.LikeTypeEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,6 +24,9 @@ public class LikedUser {
 	
 	@Column(name="liked_user_id")
 	private int likedUserId;
+	
+	@Enumerated(EnumType.STRING)
+    private LikeTypeEnum like;
 
 	public int getUserId() {
 		return userId;
@@ -45,12 +51,21 @@ public class LikedUser {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public LikeTypeEnum getLike() {
+		return like;
+	}
 
-	public LikedUser(int id, int userId, int likedUserId) {
+	public void setLike(LikeTypeEnum like) {
+		this.like = like;
+	}
+
+	public LikedUser(int id, int userId, int likedUserId, LikeTypeEnum like) {
 		super();
 		this.id = id;
 		this.userId = userId;
 		this.likedUserId = likedUserId;
+		this.like = like;
 	}
 
 	public LikedUser() {

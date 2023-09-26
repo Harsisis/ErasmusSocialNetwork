@@ -1,10 +1,14 @@
 package fr.erasmus.socialNetwork.struct;
 
+import fr.erasmus.socialNetwork.enums.LikeTypeEnum;
+
 public class LikedPostStruct {
 
 	private int id;
 	private int postId;
 	private int userId;
+	private LikeTypeEnum like;
+	
 	public int getPostId() {
 		return postId;
 	}
@@ -17,10 +21,11 @@ public class LikedPostStruct {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public LikedPostStruct(int postId, int userId) {
-		super();
-		this.postId = postId;
-		this.userId = userId;
+	public LikeTypeEnum getLike() {
+		return like;
+	}
+	public void setLike(LikeTypeEnum like) {
+		this.like = like;
 	}
 	public LikedPostStruct() {
 	}
@@ -30,4 +35,12 @@ public class LikedPostStruct {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public LikedPostStruct(int id, int postId, int userId, LikeTypeEnum like) {
+		super();
+		this.id = id;
+		this.postId = postId;
+		this.userId = userId;
+		this.like = like;
+	}
+	
 }
