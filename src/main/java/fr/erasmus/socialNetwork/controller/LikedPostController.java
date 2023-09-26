@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,13 +28,13 @@ public class LikedPostController {
 		return ResponseEntity.status(HttpStatus.OK).body(likedPostService.like(likedPostStruct));
 	}
 
-	@DeleteMapping(value = "/unlike")
-	public ResponseEntity<Boolean> unlikePost(@RequestHeader int likedPostId) {
+	@DeleteMapping(value = "/unlike/{likedPostId}")
+	public ResponseEntity<Boolean> unlikePost(@PathVariable("likedPostId") int likedPostId) {
 		return ResponseEntity.status(HttpStatus.OK).body(likedPostService.unlike(likedPostId));
 	}
 
-	@GetMapping(value = "/allLikedBy")
-	public ResponseEntity<List<LikedPostStruct>> findAllLikedPostByUser(@RequestHeader("userId") int userId) {
+	@GetMapping(value = "/allLikedBy/{userId}")
+	public ResponseEntity<List<LikedPostStruct>> findAllLikedPostByUser(@PathVariable("userId") int userId) {
 		return ResponseEntity.status(HttpStatus.OK).body(likedPostService.likedByUser(userId));
 	}
 	
