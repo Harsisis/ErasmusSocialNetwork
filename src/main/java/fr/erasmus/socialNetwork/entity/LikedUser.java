@@ -25,7 +25,8 @@ public class LikedUser {
 	@Column(name="liked_user_id")
 	private int likedUserId;
 	
-	@Enumerated(EnumType.ORDINAL)
+	@Column(name="like_type")
+	@Enumerated(EnumType.STRING)
     private LikeTypeEnum like;
 
 	public int getUserId() {
