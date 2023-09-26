@@ -26,9 +26,9 @@ public class LikedCommentService implements IService<LikedCommentStruct> {
 	}
 
 	@Override
-	public boolean unlike(LikedCommentStruct structToSave) {
-		if (likedCommentRepository.existsById(structToSave.getId())) {
-			likedCommentRepository.delete(likedCommentRepository.findById(structToSave.getId()).get());
+	public boolean unlike(int idToDelete) {
+		if (likedCommentRepository.existsById(idToDelete)) {
+			likedCommentRepository.delete(likedCommentRepository.findById(idToDelete).get());
 			return true;
 		}
 		return false;

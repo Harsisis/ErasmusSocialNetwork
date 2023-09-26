@@ -9,19 +9,17 @@ import java.util.List;
 public interface IService<V> {
 	/**
 	 * Like Object
-	 * @param id
-	 * @param userId
+	 * @param structToSave
 	 * @return
 	 */
 	V like(V structToSave);
 	
 	/**
 	 * UnLike Object
-	 * @param id
-	 * @param userId
+	 * @param idToDlete
 	 * @return
 	 */
-	boolean unlike(V structToSave);
+	boolean unlike(int idToDlete);
 	
 	/**
 	 * List of Objects liked by User
@@ -32,7 +30,6 @@ public interface IService<V> {
 	
 	/**
 	 * List of Objects
-	 * @param userId
 	 * @return
 	 */
 	List<V> findAll();

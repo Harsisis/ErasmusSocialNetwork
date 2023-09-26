@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,9 +28,9 @@ public class LikedPostController {
 		return ResponseEntity.status(HttpStatus.OK).body(likedPostService.like(likedPostStruct));
 	}
 
-	@PostMapping(value = "/unlike")
-	public ResponseEntity<Boolean> unlikePost(@RequestBody LikedPostStruct likedPostStruct) {
-		return ResponseEntity.status(HttpStatus.OK).body(likedPostService.unlike(likedPostStruct));
+	@DeleteMapping(value = "/unlike")
+	public ResponseEntity<Boolean> unlikePost(@RequestHeader int likedPostId) {
+		return ResponseEntity.status(HttpStatus.OK).body(likedPostService.unlike(likedPostId));
 	}
 
 	@GetMapping(value = "/allLiked")

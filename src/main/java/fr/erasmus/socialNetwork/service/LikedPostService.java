@@ -26,9 +26,9 @@ public class LikedPostService implements IService<LikedPostStruct> {
 	}
 
 	@Override
-	public boolean unlike(LikedPostStruct structToSave) {
-		if (likedPostRepository.existsById(structToSave.getId())) {
-			likedPostRepository.delete(likedPostRepository.findById(structToSave.getId()).get());
+	public boolean unlike(int idToDelete) {
+		if (likedPostRepository.existsById(idToDelete)) {
+			likedPostRepository.delete(likedPostRepository.findById(idToDelete).get());
 			return true;
 		}
 		return false;
