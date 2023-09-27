@@ -53,34 +53,26 @@ public class LikedCommentControllerTest {
     public void testUnlikeComment() {
         int likedCommentId = 123;
 
-        // Définissez le comportement simulé de likedCommentService.unlike
         when(likedCommentService.unlike(eq(likedCommentId)))
-            .thenReturn(true); // Ou false selon votre cas
+            .thenReturn(true);
 
-        // Appelez la méthode du contrôleur et vérifiez la réponse
         ResponseEntity<Boolean> response = likedCommentController.unlikeComment(likedCommentId);
 
-        // Assurez-vous que la réponse a le statut attendu et que le corps contient le résultat
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertTrue(response.getBody()); // Ou assertFalse() selon votre cas
+        assertTrue(response.getBody());
     }
     
     @Test
     public void testFindAllLikedCommentByUser() {
-        // Supposons un userId factice pour votre test
         int userId = 456;
 
-        // Supposons une liste factice de LikedCommentStruct pour votre test
         List<LikedCommentStruct> likedCommentList = new ArrayList<>();
 
-        // Définissez le comportement simulé de likedCommentService.likedByUser
         when(likedCommentService.likedByUser(eq(userId)))
             .thenReturn(likedCommentList);
 
-        // Appelez la méthode du contrôleur et vérifiez la réponse
         ResponseEntity<List<LikedCommentStruct>> response = likedCommentController.findAllLikedCommentByUser(userId);
 
-        // Assurez-vous que la réponse a le statut attendu et que le corps contient la liste
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(likedCommentList, response.getBody());
     }

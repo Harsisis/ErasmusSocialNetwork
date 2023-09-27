@@ -52,12 +52,12 @@ public class LikedUserControllerTest {
         int likedUserId = 123;
 
         when(likedUserService.unlike(eq(likedUserId)))
-            .thenReturn(true); // Ou false selon votre cas
+            .thenReturn(true);
 
         ResponseEntity<Boolean> response = likedUserController.unlikeUser(likedUserId);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertTrue(response.getBody()); // Ou assertFalse() selon votre cas
+        assertTrue(response.getBody());
     }
 
     @Test
