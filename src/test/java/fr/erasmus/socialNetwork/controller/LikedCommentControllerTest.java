@@ -1,25 +1,101 @@
 package fr.erasmus.socialNetwork.controller;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
+import fr.erasmus.socialNetwork.enums.LikeTypeEnum;
 import fr.erasmus.socialNetwork.service.LikedCommentService;
 import fr.erasmus.socialNetwork.struct.LikedCommentStruct;
 
-@SpringBootTest
 public class LikedCommentControllerTest {
 
-	@Autowired
-	private LikedCommentService likedCommentService;
-	
-	@Test
-	void create_comment_thenReturnTrue() throws Exception {
-		LikedCommentStruct struct = new LikedCommentStruct();
-		struct.setCommentId(0);
-		struct.setUserId(0);
-		assertNotEquals(likedCommentService.like(struct).getId(), 0);
-	}
+    @InjectMocks
+    private LikedCommentController likedCommentController;
+
+    @Mock
+    private LikedCommentService likedCommentService;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    public void testLikeComment() {
+        LikedCommentStruct likedCommentStruct = new LikedCommentStruct();
+        likedCommentStruct.setCommentId(1);
+        likedCommentStruct.setUserId(2);
+        likedCommentStruct.setLike(LikeTypeEnum.LOVE);
+
+        when(likedCommentService.like(any(LikedCommentStruct.class)))
+            .thenReturn(likedCommentStruct);
+
+        ResponseEntity<LikedCommentStruct> response = likedCommentController.likeComment(likedCommentStruct);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+    
+    @Test
+    public void testUnlikeComment() {
+        int likedCommentId = 123;
+
+        // Définissez le comportement simulé de likedCommentService.unlike
+        when(likedCommentService.unlike(eq(likedCommentId)))
+            .thenReturn(true); // Ou false selon votre cas
+
+        // Appelez la méthode du contrôleur et vérifiez la réponse
+        ResponseEntity<Boolean> response = likedCommentController.unlikeComment(likedCommentId);
+
+        // Assurez-vous que la réponse a le statut attendu et que le corps contient le résultat
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertTrue(response.getBody()); // Ou assertFalse() selon votre cas
+    }
+    
+    @Test
+    public void testFindAllLikedCommentByUser() {
+        // Supposons un userId factice pour votre test
+        int userId = 456;
+
+        // Supposons une liste factice de LikedCommentStruct pour votre test
+        List<LikedCommentStruct> likedCommentList = new ArrayList<>();
+
+        // Définissez le comportement simulé de likedCommentService.likedByUser
+        when(likedCommentService.likedByUser(eq(userId)))
+            .thenReturn(likedCommentList);
+
+        // Appelez la méthode du contrôleur et vérifiez la réponse
+        ResponseEntity<List<LikedCommentStruct>> response = likedCommentController.findAllLikedCommentByUser(userId);
+
+        // Assurez-vous que la réponse a le statut attendu et que le corps contient la liste
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(likedCommentList, response.getBody());
+    }
+    
+    @Test
+    public void testFindAllLikedComment() {
+        List<LikedCommentStruct> likedCommentList = new ArrayList<>();
+
+        when(likedCommentService.findAll())
+            .thenReturn(likedCommentList);
+
+        ResponseEntity<List<LikedCommentStruct>> response = likedCommentController.findAllLikedComment();
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(likedCommentList, response.getBody());
+    }
+
 }
