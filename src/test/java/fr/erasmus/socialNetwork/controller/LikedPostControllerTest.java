@@ -52,12 +52,12 @@ public class LikedPostControllerTest {
         int likedPostId = 123;
 
         when(likedPostService.unlike(eq(likedPostId)))
-            .thenReturn(true); // Ou false selon votre cas
+            .thenReturn(true);
 
         ResponseEntity<Boolean> response = likedPostController.unlikePost(likedPostId);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertTrue(response.getBody()); // Ou assertFalse() selon votre cas
+        assertTrue(response.getBody());
     }
 
     @Test
